@@ -19,15 +19,15 @@ import java.util.List;
 
 @Controller
 public class listController {
-    @RequestMapping("/indexList/{log}/{lat}")
-    public String list(Model model,@PathVariable("log")String log,@PathVariable("lat")String lat){
+    @RequestMapping("/indexList/{log}/{lat}/{rad}")
+    public String list(Model model,@PathVariable("log")String log,@PathVariable("lat")String lat,@PathVariable("rad")String rad){
         aroundSearch arounds = new aroundSearch();
         mapStatic map=new mapStatic();
-        List<hospitalAround> tempListAll = arounds.getAroundMap(log,lat,"2000");
+        List<hospitalAround> tempListAll = arounds.getAroundMap(log,lat,rad);
         model.addAttribute("mapUrl",map.getStaticMap(tempListAll,log,lat));
         model.addAttribute("listHos", tempListAll);
         model.addAttribute("loc",new locationOrigin(log,lat));
-        System.out.println(log);
+        model.addAttribute("rad",rad);
         return "listTemp";
     }
 
@@ -76,12 +76,10 @@ public class listController {
         return "listTemp";
     }*/
 
-    @RequestMapping("/hosList/{log}/{lat}/{id}")
-    public String toUpdateEmp(@PathVariable("id")String id, Model model,@PathVariable("log")String log,@PathVariable("lat")String lat){
-        System.out.println(id);
+    @RequestMapping("/hosList/{log}/{lat}/{rad}/{id}")
+    public String toUpdateEmp(@PathVariable("id")String id, Model model,@PathVariable("log")String log,@PathVariable("lat")String lat,@PathVariable("rad")String rad){
         aroundSearch arounds = new aroundSearch();
-        List<hospitalAround> tempListAll = arounds.getAroundMap(log,lat,"1000");
-        hospitalAround tempHos =arounds.getCertainHospital(id);
+        hospitalAround tempHos =arounds.getCertainHospital(id,log,lat,rad);
         model.addAttribute("hos",tempHos);
         getRoute route = new getRoute();
         List<oneRoute> routeWayCar = route.getRouteCar(log,lat,tempHos.getLocation()[0],tempHos.getLocation()[1],tempHos.getId());
@@ -94,6 +92,8 @@ public class listController {
         model.addAttribute("routeWayWalkList",routeWayWalk);
         model.addAttribute("routeWayRideList",routeWayRide);
         model.addAttribute("routeWayEBikeList",routeWayEBike);
+        model.addAttribute("loc",new locationOrigin(log,lat));
+        model.addAttribute("rad",rad);
         //model.addAttribute("routeWayBusList",routeWayBus);
         return "listTemp1";
     }

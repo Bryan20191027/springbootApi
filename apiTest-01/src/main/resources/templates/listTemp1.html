@@ -19,6 +19,7 @@
   <body>
   <!--<div th:replace="~{commons/commons::topbar}"></div>-->
   <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0" th:fragment="topbar">
+    <a class="btn btn-sm btn-primary" th:href="@{'/indexList/'+${loc.getLog()}+'/'+${loc.getLat()}+'/'+${rad}}">返回</a>
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">[[${session.loginUser}]]</a>
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
@@ -46,7 +47,6 @@
                   <th>医院地址</th>
                   <th>医院距离</th>
                   <th>医院电话</th>
-                  <th>图片</th>
                 </tr>
               </thead>
               <tbody>
@@ -59,10 +59,15 @@
                 <td th:text="${hos.getAddress()}"/>
                 <td th:text="${hos.getDistance()}"/>
                 <td th:text="${hos.getTel()}"/>
-                <td th:text="${hos.getPhotosUrl()}"/>
+
               </tr>
               </tbody>
             </table>
+            <h1 th:text="${hos.getPhotosUrl().size()==0?'':'医院相关图片'}"></h1>
+            <span th:each="photo:${hos.getPhotosUrl()}">
+                    <img th:src="${photo}">
+
+            </span>
           </div>
 
           <div class="table-responsive">

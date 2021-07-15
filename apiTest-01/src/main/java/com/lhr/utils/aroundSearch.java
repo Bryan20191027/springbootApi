@@ -75,17 +75,13 @@ public class aroundSearch {
         return getAroundMap(longitude,latitude,defaultRadius);
     }
 
-    public hospitalAround getCertainHospital(String id){
-        if(hosList.size()==0){
-            return null;
-        }
-        else{
-            for(hospitalAround ha:hosList){
+    public hospitalAround getCertainHospital(String id,String longitude, String latitude, String radius){
+        List<hospitalAround> hosListTemp = getAroundMap(longitude, latitude, radius);
+            for(hospitalAround ha:hosListTemp){
                 if(ha.getId().equals(id)){
                     return ha;
                 }
             }
             return null;
-        }
     }
 }

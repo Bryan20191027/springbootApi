@@ -53,7 +53,8 @@
                   <td th:text="${hospital.getDistance()}"/>
                   <td th:text="${hospital.getTel()}==null?'无':${hospital.getTel()}"/>
                 <td>
-                  <a class="btn btn-sm btn-primary" th:href="@{'/hosList/'+${loc.getLog()}+'/'+${loc.getLat()}+'/'+${hospital.getId()}}">详细页面</a>
+                  <a class="btn btn-sm btn-primary" th:href="@{'/hosList/'+${loc.getLog()}+'/'+${loc.getLat()}+'/'
+                  +${rad}+'/'+${hospital.getId()}}">详细页面</a>
                 </td>
               </tr>
               </tbody>
