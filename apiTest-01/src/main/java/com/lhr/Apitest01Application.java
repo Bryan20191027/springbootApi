@@ -1,6 +1,7 @@
 package com.lhr;
 
 import com.lhr.Service.aroundSearchService;
+import com.lhr.utils.mapStatic;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

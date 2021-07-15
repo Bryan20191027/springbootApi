@@ -72,9 +72,6 @@ public class staticsDeal {
                 hospitalTemp.setAdname((String) objMap.get("adname"));
             }
 
-
-
-
             if(objMap.get("distance")!=null){
                 hospitalTemp.setDistance((String)objMap.get("distance"));
 

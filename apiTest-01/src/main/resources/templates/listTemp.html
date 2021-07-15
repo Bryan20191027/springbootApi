@@ -29,12 +29,14 @@
     </nav>
 
 
-    <div th:replace="~{commons/commons::sidebar(active='emps')}"></div>
+    <!--<div th:replace="~{commons/commons::sidebar(active='emps')}"></div>-->
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
           <div class="table-responsive">
+            <img th:src="${mapUrl}">
             <table class="table table-striped table-sm">
               <thead>
                 <tr>
+                  <th>索引</th>
                   <th>医院名字</th>
                   <th>医院类型</th>
                   <th>医院地址</th>
@@ -44,13 +46,14 @@
               </thead>
               <tbody>
               <tr th:each="hospital:${listHos}">
+                  <td th:text="${listHos.indexOf(hospital)+1}"/>
                   <td th:text="${hospital.getName()}"/>
                   <td th:text="${hospital.getType()}"/>
                   <td th:text="${hospital.getAddress()}"/>
                   <td th:text="${hospital.getDistance()}"/>
                   <td th:text="${hospital.getTel()}==null?'无':${hospital.getTel()}"/>
                 <td>
-                  <a class="btn btn-sm btn-primary" th:href="@{/hosList/{id}(id=${hospital.getId()})}">详细页面</a>
+                  <a class="btn btn-sm btn-primary" th:href="@{'/hosList/'+${loc.getLog()}+'/'+${loc.getLat()}+'/'+${hospital.getId()}}">详细页面</a>
                 </td>
               </tr>
               </tbody>

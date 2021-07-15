@@ -55,7 +55,6 @@ public class getRoute {
         params.put("destination",des_log+","+des_lat);
         //params.put("destination_id",des_id);
         ResponseEntity<LinkedHashMap> result = restTemplate.getForEntity(urlRouteRide, LinkedHashMap.class, params);
-
         List<oneRoute> routeWayList = staticsDeal.toDealRoute(result.getBody());
         return routeWayList;
     }

@@ -12,10 +12,11 @@ public class aroundSearch {
     private final RestTemplate restTemplate;
     private final String apiKey="e3a4ef9c939c554ace674a69801f8184";
     private String urlAround="https://restapi.amap.com/v3/place/around?key={key}&location={longitude},{latitude}&keywords={keywords}&radius={radius}&page={page}";
+    private Map<String, String> params = new HashMap<>();
     private final String keywords="医院";
     private final String defaultRadius="3000";
     private final int offset=20;
-    private Map<String, String> params = new HashMap<>();
+
     private List<hospitalAround> hosList=new ArrayList<>();
 
     public aroundSearch() {

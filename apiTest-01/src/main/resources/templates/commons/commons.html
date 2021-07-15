@@ -10,25 +10,25 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a th:href="@{/indexList}">
+                <a th:href="@{/indexList/${log}/${lat}}">
                     <span data-feather="home"></span>
                     所有医院 <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/indexList/total}">
+                <a class="nav-link" th:href="@{/indexList/${log}/${lat}/total}">
                     <span data-feather="file"></span>
                     综合医院
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/indexList/mouth}">
+                <a class="nav-link" th:href="@{/indexList/${log}/${lat}/mouth}">
                     <span data-feather="file"></span>
                     口腔医院
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/indexList/eye}">
+                <a class="nav-link" th:href="@{/indexList/${log}/${lat}/eye}">
                     <span data-feather="file"></span>
                     眼科医院
                 </a>
