@@ -107,13 +107,51 @@ public class staticsDeal {
             routeWay=new oneRoute();
             for (LinkedHashMap routeMapTemp : routeListTempStep) {
                 routeTemp = new stepRoute();
-                routeTemp.setInstruction((String) routeMapTemp.get("instruction"));
-                routeTemp.setOrientation((String) routeMapTemp.get("orientation"));
-                routeTemp.setRoad_name((String) routeMapTemp.get("road_name"));
-                if(routeMapTemp.get("step_distance") instanceof String)
-                    routeTemp.setStep_distance((String) routeMapTemp.get("step_distance"));
-                else if(routeMapTemp.get("step_distance") instanceof Integer)
-                    routeTemp.setStep_distance(((Integer) routeMapTemp.get("step_distance")).toString());
+                if(routeMapTemp.get("instruction") instanceof String)
+                    routeTemp.setInstruction((String) routeMapTemp.get("instruction"));
+                if(routeMapTemp.get("orientation") instanceof String)
+                    routeTemp.setOrientation((String) routeMapTemp.get("orientation"));
+                if(routeMapTemp.get("road") instanceof String)
+                    routeTemp.setRoad_name((String) routeMapTemp.get("road"));
+                if(routeMapTemp.get("distance") instanceof String)
+                    routeTemp.setStep_distance((String) routeMapTemp.get("distance"));
+                else if(routeMapTemp.get("distance") instanceof Integer)
+                    routeTemp.setStep_distance(((Integer) routeMapTemp.get("distance")).toString());
+                if(routeMapTemp.get("duration") instanceof String)
+                    routeTemp.setDuration((String) routeMapTemp.get("duration"));
+                if(routeMapTemp.get("polyline")instanceof String)
+                    routeTemp.setPolyline((String)routeMapTemp.get("polyline"));
+                routeWay.setRoute(routeTemp);
+            }
+            routeWayList.add(routeWay);
+        }
+        return routeWayList;
+    }
+
+    public static List<oneRoute> toDealRouteBike(LinkedHashMap routeMap){
+        List<LinkedHashMap> routeMapList = (ArrayList)((LinkedHashMap)routeMap.get("data")).get("paths");
+        List<oneRoute> routeWayList=new ArrayList<>();
+        oneRoute routeWay;
+        stepRoute routeTemp;
+        for(LinkedHashMap routeListTemp:routeMapList) {
+            List<LinkedHashMap> routeListTempStep=(ArrayList)routeListTemp.get("steps");
+            routeWay=new oneRoute();
+            for (LinkedHashMap routeMapTemp : routeListTempStep) {
+                routeTemp = new stepRoute();
+                if(routeMapTemp.get("instruction") instanceof String)
+                    routeTemp.setInstruction((String) routeMapTemp.get("instruction"));
+                if(routeMapTemp.get("orientation") instanceof String)
+                    routeTemp.setOrientation((String) routeMapTemp.get("orientation"));
+                if(routeMapTemp.get("road") instanceof String)
+                    routeTemp.setRoad_name((String) routeMapTemp.get("road"));
+                if(routeMapTemp.get("distance") instanceof String)
+                    routeTemp.setStep_distance((String) routeMapTemp.get("distance"));
+                else if(routeMapTemp.get("distance") instanceof Integer)
+                    routeTemp.setStep_distance(((Integer) routeMapTemp.get("distance")).toString());
+                if(routeMapTemp.get("duration") instanceof Integer)
+                    routeTemp.setDuration(routeMapTemp.get("duration").toString());
+                if(routeMapTemp.get("polyline")instanceof String)
+                    routeTemp.setPolyline((String)routeMapTemp.get("polyline"));
                 routeWay.setRoute(routeTemp);
             }
             routeWayList.add(routeWay);

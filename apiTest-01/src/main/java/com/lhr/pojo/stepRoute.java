@@ -8,6 +8,24 @@ public class stepRoute {
     private String orientation;
     private String road_name;
     private String step_distance;
+    private String duration;
+    private String polyline;
+
+    public String getPolyline() {
+        return polyline;
+    }
+
+    public void setPolyline(String polyline) {
+        this.polyline = polyline;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration+"秒";
+    }
 
     public String getInstruction() {
         return instruction;

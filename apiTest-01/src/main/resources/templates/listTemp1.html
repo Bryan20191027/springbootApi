@@ -73,12 +73,15 @@
           <div class="table-responsive">
             <table class="table table-striped table-sm">
               <h3>乘车路线规划</h3>
+              <img th:src="${routeCarUrl}">
+              <h5 th:text="'总预计距离:' +${routeWayCarInfo.get(0)}+'     总预计用时:' +${routeWayCarInfo.get(1)}"></h5>
               <thead>
               <tr>
                 <th>路径</th>
                 <th>方向</th>
                 <th>路名</th>
                 <th>距离</th>
+                <th>预计用时</th>
               </tr>
               </thead>
               <tbody>
@@ -89,6 +92,7 @@
                     <td th:text="${route.getOrientation()}"/>
                     <td th:text="${route.getRoad_name()}"/>
                     <td th:text="${route.getStep_distance()}"/>
+                      <td th:text="${route.getDuration()}"/>
                     </tr>
                 </span>
               </span>
@@ -96,12 +100,15 @@
             </table>
             <table class="table table-striped table-sm">
               <h3>步行路线规划</h3>
+              <img th:src="${routeWalkUrl}">
+              <h5 th:text="'总预计距离:' +${routeWayWalkInfo.get(0)}+'     总预计用时:' +${routeWayWalkInfo.get(1)}"></h5>
               <thead>
               <tr>
                 <th>路径</th>
                 <th>方向</th>
                 <th>路名</th>
                 <th>距离</th>
+                <th>预计用时</th>
               </tr>
               </thead>
               <tbody>
@@ -112,6 +119,7 @@
                     <td th:text="${route.getOrientation()}"/>
                     <td th:text="${route.getRoad_name()}"/>
                     <td th:text="${route.getStep_distance()}"/>
+                      <td th:text="${route.getDuration()}"/>
                     </tr>
                 </span>
               </span>
@@ -119,12 +127,15 @@
             </table>
             <table class="table table-striped table-sm">
               <h3>骑行路线规划</h3>
+              <img th:src="${routeRideUrl}">
+              <h5 th:text="'总预计距离:' +${routeWayRideInfo.get(0)}+'     总预计用时:' +${routeWayRideInfo.get(1)}"></h5>
               <thead>
               <tr>
                 <th>路径</th>
                 <th>方向</th>
                 <th>路名</th>
                 <th>距离</th>
+                <th>预计用时</th>
               </tr>
               </thead>
               <tbody>
@@ -135,12 +146,13 @@
                     <td th:text="${route.getOrientation()}"/>
                     <td th:text="${route.getRoad_name()}"/>
                     <td th:text="${route.getStep_distance()}"/>
+                      <td th:text="${route.getDuration()}"/>
                     </tr>
                 </span>
               </span>
               </tbody>
             </table>
-            <table class="table table-striped table-sm">
+           <!-- <table class="table table-striped table-sm">
               <h3>电动车路线规划</h3>
               <thead>
               <tr>
@@ -162,7 +174,7 @@
                 </span>
               </span>
               </tbody>
-            </table>
+            </table>-->
             <!--<table class="table table-striped table-sm">
               <h3>公交路线规划</h3>
               <thead>

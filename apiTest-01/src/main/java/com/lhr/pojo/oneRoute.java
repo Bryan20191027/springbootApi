@@ -11,7 +11,6 @@ public class oneRoute {
     }
 
     public void setRoute(stepRoute stepRouteTemp) {
-
         route.add(stepRouteTemp);
     }
 

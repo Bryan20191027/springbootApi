@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class listController {
@@ -82,16 +83,26 @@ public class listController {
         hospitalAround tempHos =arounds.getCertainHospital(id,log,lat,rad);
         model.addAttribute("hos",tempHos);
         getRoute route = new getRoute();
-        List<oneRoute> routeWayCar = route.getRouteCar(log,lat,tempHos.getLocation()[0],tempHos.getLocation()[1],tempHos.getId());
-        List<oneRoute> routeWayWalk = route.getRouteWalk(log,lat,tempHos.getLocation()[0],tempHos.getLocation()[1],tempHos.getId());
-        List<oneRoute> routeWayRide = route.getRouteRide(log,lat,tempHos.getLocation()[0],tempHos.getLocation()[1]);
-        List<oneRoute> routeWayEBike = route.getRouteEBike(log,lat,tempHos.getLocation()[0],tempHos.getLocation()[1]);
+        Map routeWayCar = route.getRouteCar(log,lat,tempHos.getLocation()[0],tempHos.getLocation()[1],tempHos.getId());
+        Map routeWayWalk = route.getRouteWalk(log,lat,tempHos.getLocation()[0],tempHos.getLocation()[1],tempHos.getId());
+        Map routeWayRide = route.getRouteRide(log,lat,tempHos.getLocation()[0],tempHos.getLocation()[1]);
+        String routeCarUrl = (new mapStatic()).getRouteStatic(tempHos,(List)routeWayCar.get("routeWayList"),log,lat);
+        String routeWalkUrl = (new mapStatic()).getRouteStatic(tempHos,(List)routeWayWalk.get("routeWayList"),log,lat);
+        String routeRideUrl = (new mapStatic()).getRouteStatic(tempHos,(List)routeWayRide.get("routeWayList"),log,lat);
+        //List<oneRoute> routeWayEBike = route.getRouteEBike(log,lat,tempHos.getLocation()[0],tempHos.getLocation()[1]);
         //List<oneRoute> routeWayBus = route.getRouteBus(origin_log,origin_lat,tempHos.getLocation()[0],tempHos.getLocation()[1]);
 
-        model.addAttribute("routeWayCarList",routeWayCar);
-        model.addAttribute("routeWayWalkList",routeWayWalk);
-        model.addAttribute("routeWayRideList",routeWayRide);
-        model.addAttribute("routeWayEBikeList",routeWayEBike);
+
+        model.addAttribute("routeWayCarList",routeWayCar.get("routeWayList"));
+        model.addAttribute("routeWayCarInfo",routeWayCar.get("info"));
+        model.addAttribute("routeCarUrl",routeCarUrl);
+        model.addAttribute("routeWayWalkList",routeWayWalk.get("routeWayList"));
+        model.addAttribute("routeWayWalkInfo",routeWayWalk.get("info"));
+        model.addAttribute("routeWalkUrl",routeWalkUrl);
+        model.addAttribute("routeWayRideList",routeWayRide.get("routeWayList"));
+        model.addAttribute("routeWayRideInfo",routeWayRide.get("info"));
+        model.addAttribute("routeRideUrl",routeRideUrl);
+        //model.addAttribute("routeWayEBikeList",routeWayEBike);
         model.addAttribute("loc",new locationOrigin(log,lat));
         model.addAttribute("rad",rad);
         //model.addAttribute("routeWayBusList",routeWayBus);
